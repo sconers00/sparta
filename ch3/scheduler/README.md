@@ -11,3 +11,6 @@ request  요청body           요청body          요청param          요청bod
 response  등록정보           다건 응답 정보    단건 응답 정보   수정 정보             -
 
 ERD : https://www.erdcloud.com/d/iv2Pwg8DHcjajxhdt
+
+lv.1 일정 생성 기능 완성
+검색기능 WIP Fixes-1
