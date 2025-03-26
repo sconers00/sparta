@@ -13,12 +13,12 @@ public class Schedule {
     private String postdate;
     private String editdate;
 
-    public Schedule(String name, String todo,String pswd){
+    public Schedule(String name, String todo,String pswd){//일정 입력용
         this.name=name;
         this.todo=todo;
         this.pswd=pswd;
     }
-    public Schedule(Long id, String name, String todo, String postdate, String editdate){
+    public Schedule(Long id, String name, String todo, String postdate, String editdate){//일반용
         this.id=id;
         this.name=name;
         this.todo=todo;

@@ -8,5 +8,6 @@ public class SchedulerRequestDto {
     private String name;
     private String todo;
     private String pswd;
+    private String postdate;
 
 }

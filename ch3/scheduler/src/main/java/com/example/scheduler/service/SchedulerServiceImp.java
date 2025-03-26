@@ -3,16 +3,12 @@ package com.example.scheduler.service;
 
 import com.example.scheduler.dto.SchedulerResponseDto;
 import com.example.scheduler.dto.SchedulerRequestDto;
-import com.example.scheduler.dto.SchedulerSearchRequestDto;
-import com.example.scheduler.dto.SchedulerSearchResponseDto;
 import com.example.scheduler.entity.Schedule;
 import com.example.scheduler.repository.SchedulerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-//import org.springframework.transaction.annotation.Transactional;
-//import org.springframework.web.server.ResponseStatusException;
-//import org.springframework.http.HttpStatus;
+
 
 @Service
 public class SchedulerServiceImp implements SchedulerService {
@@ -32,7 +28,7 @@ public class SchedulerServiceImp implements SchedulerService {
     }
 
     @Override
-    public List<SchedulerSearchResponseDto> findSchedules(SchedulerSearchRequestDto dto) {
+    public List<SchedulerResponseDto> findSchedules(SchedulerRequestDto dto) {
 
         String name=dto.getName();
         String Postdate=dto.getPostdate();
@@ -40,11 +36,17 @@ public class SchedulerServiceImp implements SchedulerService {
         return schedulerRepository.findSchedules(name, Postdate);
     }
 
-   /* @Override 고장
-    public SchedulerSearchResponseDto findSchedulerById(Long id) {
-        Schedule schedule = SchedulerRepository.findSchedulerByIdOrElseThrow(id);
-        return new SchedulerSearchResponseDto(schedule);
-    }*/
+    @Override
+    public SchedulerResponseDto findSchedulerById(Long id) {//오류 반환 포함 검색 연결기
+        Schedule schedule = schedulerRepository.findSchedulerById(id).orElseThrow(()->new IllegalArgumentException("해당 id의 스케쥴이 없습니다"));
+        return new SchedulerResponseDto(
+                schedule.getId(),
+                schedule.getTodo(),
+                schedule.getName(),
+                schedule.getPostdate(),
+                schedule.getEditdate()
+        );
+    }
 
 
 }

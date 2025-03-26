@@ -2,8 +2,6 @@ package com.example.scheduler.controller;
 
 import com.example.scheduler.dto.SchedulerRequestDto;
 import com.example.scheduler.dto.SchedulerResponseDto;
-import com.example.scheduler.dto.SchedulerSearchRequestDto;
-import com.example.scheduler.dto.SchedulerSearchResponseDto;
 import com.example.scheduler.service.SchedulerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,22 +18,22 @@ public class ScheduleController {
         this.schedulerservice = schedulerservice;
     }
 
-    @PostMapping()
+    @PostMapping()//일정 추가
     public ResponseEntity<SchedulerResponseDto> addSchedule(@RequestBody SchedulerRequestDto dto) {
         //serviceLayer 호출 응답
         return new ResponseEntity<>(schedulerservice.addSchedule(dto), HttpStatus.CREATED);
     }
 
-    @GetMapping()//부분구현
-    public List<SchedulerSearchResponseDto> findSchedules(@RequestBody SchedulerSearchRequestDto dto){
+    @GetMapping()//일정 검색
+    public List<SchedulerResponseDto> findSchedules(@RequestBody SchedulerRequestDto dto){
 
-        return schedulerservice.findSchedules(dto);
+        return new ResponseEntity<>(schedulerservice.findSchedules(dto),HttpStatus.OK).getBody();
     }
 
-    /*@GetMapping("/{id}") 고장
-    public ResponseEntity<SchedulerSearchResponseDto> findSchedulerById(@PathVariable Long id){
-        return new ResponseEntity<>(SchedulerService.findSchedulerById(id),HttpStatus.Ok);
-    }*/
+    @GetMapping("/{id}")//id로 일정 조회
+    public ResponseEntity<SchedulerResponseDto> findSchedulerById(@PathVariable Long id){
+        return new ResponseEntity<>(schedulerservice.findSchedulerById(id),HttpStatus.OK);
+    }
 
 
 
