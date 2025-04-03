@@ -13,7 +13,7 @@ api 구성
 
 	삭제			DELETE		/scheduler/schedule/{id}	param		-		200:OK
 
-	가입			POST		/member				body		등록정보		201:created
+	가입			POST		/member/signIn			body		등록정보		201:created
  
 	조회			GET		/member				param		body		200:OK
 
@@ -23,11 +23,11 @@ api 구성
 
 	삭제			DELETE		/member/{id}			param		-		200:OK
 
-	로그인			?		?				?		      ?		200:OK
+	로그인			POST		/member/logIn			body		body+cookie	200:OK
 
 request body
 
-lv3 schedule
+lv4 schedule
 
     생성 : {"title":"?", "contents":"?"}
 
@@ -38,46 +38,27 @@ lv3 schedule
     생성 : {"username":"?", "email":"?", "password":"?"}
 
     수정 : {"username":"?", "email":"?", "password":"?"}
+
+    logIn : {"email":"?", "password":"?"}
     
 response
 
 lv3 schedule
 
-{
-
-	"id":"?",
- 
-	"userid":"?",
- 
- 	"title":"?",
-	
- 	"contents":"?",
-	
-	"createdAt":?",
- 
-	"modifiedAt":"?"
- 
- }
+{"id":"?", "userid":"?", "title":"?", "contents":"?", "createdAt":?", "modifiedAt":"?"}
 
     member
-  {
-	
-	"userid":"?",
- 
-	"username":"?",
- 
-	"email":"?",
- 
-	"createdAt":"?",
- 
-	"modifiedAt":"?"
- 
- }
- 
-로그인 기능이 없기에 스케쥴 등록시 userid에서 의존성 고장. lv4부터 정리될 예정.
+		
+{"userid":"?", "username":"?", "email":"?", "createdAt":"?", "modifiedAt":"?"}
 
+	login
+
+{"email":"?", "userid":"?"}
+ 
 titl은 공백이거나 빈 문자열일 수 없음(lv1~)
 
 username, email은 공백일 수 없으며 빈 문자열일 수 없음.(lv2~)
 
 비밀번호는 필수이며 공백이거나 빈 문자열일 수 없으며 최소크기 6 요구 (lv3~)
+
+로그인 실패와 비 인가 접근은 401 에러(lv4~)
