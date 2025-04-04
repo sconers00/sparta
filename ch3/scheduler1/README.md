@@ -14,3 +14,5 @@ ERD : https://www.erdcloud.com/d/iv2Pwg8DHcjajxhdt
 
 lv.1 일정 생성 기능 완성
 검색기능 WIP Fixes-1
+
+주말마다 만들어볼예정
