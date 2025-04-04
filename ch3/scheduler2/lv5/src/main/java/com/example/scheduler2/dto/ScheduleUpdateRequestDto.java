@@ -7,6 +7,7 @@ import lombok.Getter;
 public class ScheduleUpdateRequestDto {
 
     @NotBlank
+    @Size(max=12)
     private final String title;
     private final String contents;
 
