@@ -55,10 +55,15 @@ lv3 schedule
 
 {"email":"?", "userid":"?"}
  
-titl은 공백이거나 빈 문자열일 수 없음(lv1~)
+titl은 공백이거나 빈 문자열일 수 없음(lv1~) 12자 이상일 수 없음(lv5~)
 
-username, email은 공백일 수 없으며 빈 문자열일 수 없음.(lv2~)
+username은 공백일 수 없으며 빈 문자열일 수 없음.(lv2~), 4자이상, 12자 이하이여야함(lv5~)
+
+email은 빈 문자열이거나 공백일 수 없음(lv2~), email규격을 따라야하며 _, ., @ 이외의 특수문자를 금지(lv5~)
 
 비밀번호는 필수이며 공백이거나 빈 문자열일 수 없으며 최소크기 6 요구 (lv3~)
 
 로그인 실패와 비 인가 접근은 401 에러(lv4~)
+
+현제 문제점 : session attribute 값을 service에서 받아와야 memberid값을 schedule로 넘기는데 그 방법을 구현하기 힘듦.(issue#2 ref #1)
+그러한 이유로 schedule작성시 memberid가 null로 처리되는 현상 발생.
